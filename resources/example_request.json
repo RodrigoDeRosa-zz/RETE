@@ -1,0 +1,63 @@
+{
+  "rules": {
+    "nodes": [
+      {
+        "id": "Age",
+        "conditions": [
+          {
+            "field": "age",
+            "value": 18,
+            "operation": "bt"
+          }
+        ]
+      },
+      {
+        "id": "Income",
+        "conditions": [
+          {
+            "field": "income",
+            "value": 10000,
+            "operation": "bt"
+          }
+        ]
+      },
+      {
+        "id": "Number of destinations",
+        "conditions": [
+          {
+            "field": "destinations",
+            "value": 3,
+            "operation": "bt"
+          }
+        ]
+      }
+    ],
+    "joints": [
+      {
+        "id": "Income and Destinations",
+        "nodes": [
+          "Income",
+          "Number of destinations"
+        ],
+        "output": "Patagonia"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "Patagonia",
+        "object": {
+          "arrival": "Bariloche",
+          "departure": "San Martin de los Andes",
+          "stops": [
+            "Villa La Angostura"
+          ]
+        }
+      }
+    ]
+  },
+  "questions": {
+    "age": "What is the traveler's age?",
+    "destinations": "Which is the approximate number of destinations you'd like to visit?",
+    "income": "What is your approximate income?"
+  }
+}

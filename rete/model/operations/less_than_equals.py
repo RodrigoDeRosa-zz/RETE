@@ -1,4 +1,4 @@
-from rete.model.operations import Operation
+from rete.model.operations.operation import Operation
 
 
 class LessThanEquals(Operation):

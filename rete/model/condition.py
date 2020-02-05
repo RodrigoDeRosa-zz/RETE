@@ -1,9 +1,9 @@
-from rete.model.operations import BiggerThan
-from rete.model.operations import BiggerThanEquals
-from rete.model.operations import Equals
-from rete.model.operations import LessThan
-from rete.model.operations import LessThanEquals
-from rete.model.operations import Operation
+from rete.model.operations.bigger_than import BiggerThan
+from rete.model.operations.bigger_than_equals import BiggerThanEquals
+from rete.model.operations.equals import Equals
+from rete.model.operations.less_than import LessThan
+from rete.model.operations.less_than_equals import LessThanEquals
+from rete.model.operations.operation import Operation
 
 
 class Condition:
