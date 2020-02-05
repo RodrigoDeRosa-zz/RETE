@@ -132,6 +132,7 @@ As a result, you will obtain a session id in the response body:
   "session_id": "f0f84ee50901433ea35ceb9bcaaadeec"
 }
 ```
+An example request can be found in `/resources/example_request.json`.
 
 #### Obtaining an inference result
 Once the session was created (you can use the session id `default` if you wish, loading
