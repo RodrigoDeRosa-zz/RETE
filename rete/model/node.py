@@ -1,6 +1,6 @@
 from typing import List
 
-from src.model.condition import Condition
+from rete.model.condition import Condition
 
 
 class Node:

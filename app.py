@@ -2,10 +2,10 @@ import uuid
 
 from flask import Flask, request
 
-from src.memories.alpha_memory import AlphaMemory
-from src.memories.beta_memory import BetaMemory
-from src.loaders.rule_loader import RuleLoader
-from src.memories.output_memory import OutputMemory
+from rete.memories.alpha_memory import AlphaMemory
+from rete.memories.beta_memory import BetaMemory
+from rete.loaders.rule_loader import RuleLoader
+from rete.memories.output_memory import OutputMemory
 
 app = Flask(__name__)
 

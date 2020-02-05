@@ -1,4 +1,4 @@
-from src.operations.operation import Operation
+from rete.operations.operation import Operation
 
 
 class LessThan(Operation):

@@ -1,10 +1,10 @@
 import json
 from os.path import abspath, join, dirname
 
-from src.model.condition import Condition
-from src.model.joint import Joint
-from src.model.node import Node
-from src.model.result import Result
+from rete.model.condition import Condition
+from rete.model.joint import Joint
+from rete.model.node import Node
+from rete.model.result import Result
 
 
 class RuleLoader:

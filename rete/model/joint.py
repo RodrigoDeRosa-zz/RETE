@@ -1,6 +1,6 @@
 from typing import List
 
-from src.model.node import Node
+from rete.model.node import Node
 
 
 class Joint:
