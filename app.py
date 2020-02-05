@@ -41,7 +41,7 @@ def forward(session_id):
 
 
 if __name__ == '__main__':
-    rules = RuleLoader.load_rules('/resources/rules.json')
+    rules = RuleLoader.load_rules_from_file('/resources/rules.json')
     output = OutputMemory(rules['outputs'])
     sessions = {}
     app.run(debug=True, port=5001)

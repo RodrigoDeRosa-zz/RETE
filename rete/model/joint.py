@@ -1,6 +1,4 @@
-from typing import List
-
-from rete.model.node import Node
+from typing import List, Optional
 
 
 class Joint:
@@ -8,8 +6,8 @@ class Joint:
     def __init__(self):
         self.id: str = ""
         self.node_ids: List[str] = []
-        self.enabled = False
-        self.output = None
+        self.enabled: bool = False
+        self.output: Optional[str] = None
 
     def with_id(self, joint_id: str):
         self.id = joint_id
@@ -19,10 +17,10 @@ class Joint:
         self.node_ids = node_ids
         return self
 
-    def with_output(self, output):
+    def with_output(self, output: str):
         self.output = output
         return self
 
-    def evaluate(self, enabled_nodes: List[Node]):
+    def evaluate(self, enabled_nodes: List[str]):
         if set(self.node_ids) <= set(enabled_nodes):
             self.enabled = True

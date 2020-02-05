@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from rete.model.condition import Condition
 
@@ -8,9 +8,9 @@ class Node:
     def __init__(self):
         self.id: str = ""
         self.conditions: List[Condition] = []
-        self.enabled = False
-        self.removable = False
-        self.output = None
+        self.enabled: bool = False
+        self.removable: bool = False
+        self.output: Optional[str] = None
 
     def with_id(self, node_id: str):
         self.id = node_id
@@ -24,7 +24,7 @@ class Node:
         self.output = output
         return self
 
-    def relevant_fields(self):
+    def relevant_fields(self) -> List[str]:
         return [condition.field for condition in self.conditions]
 
     def evaluate(self, knowledge: dict):
@@ -45,5 +45,5 @@ class Node:
         items = ("%s = %r" % (k, v) for k, v in self.__dict__.items())
         return "<%s: {%s}>" % (self.__class__.__name__, ', '.join(items))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return str(self)

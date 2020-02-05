@@ -1,5 +1,6 @@
 import json
 from os.path import abspath, join, dirname
+from typing import List
 
 from rete.model.condition import Condition
 from rete.model.joint import Joint
@@ -9,38 +10,42 @@ from rete.model.result import Result
 
 class RuleLoader:
 
-    @staticmethod
-    def load_rules(path: str):
+    @classmethod
+    def load_rules_from_file(cls, path: str) -> dict:
         file_path = f'{abspath(join(dirname(__file__), "../../"))}{path}'
         with open(file_path, 'r') as fd:
             raw_rules = json.load(fd)
-        rules = {'nodes': [], 'joints': [], 'outputs': []}
-        for node in raw_rules.get('nodes', []):
-            conditions = []
-            for condition in node.get('conditions', []):
-                conditions.append(
-                    Condition()
-                        .with_field(condition['field'])
-                        .with_value(condition['value'])
-                        .with_operation(condition['operation'])
-                )
-            rules['nodes'].append(
-                Node()
-                    .with_id(node['id'])
-                    .with_conditions(conditions)
-                    .with_output(node.get('output'))
-            )
-        for joint in raw_rules.get('joints', []):
-            rules['joints'].append(
-                Joint()
-                    .with_id(joint['id'])
-                    .with_nodes(joint['nodes'])
-                    .with_output(joint['output'])
-            )
-        for output in raw_rules.get('outputs', []):
-            rules['outputs'].append(
-                Result()
-                    .with_id(output['id'])
-                    .with_object(output['object'])
-            )
-        return rules
+        return cls.parse_rules(raw_rules)
+
+    @classmethod
+    def parse_rules(cls, rules_dict: dict) -> dict:
+        return {
+            'nodes': cls.__parse_nodes(rules_dict.get('nodes', [])),
+            'joints': cls.__parse_joints(rules_dict.get('joints', [])),
+            'outputs': cls.__parse_results(rules_dict.get('outputs', []))
+        }
+
+    @classmethod
+    def __parse_nodes(cls, raw_nodes: list) -> List[Node]:
+        nodes = []
+        for node in raw_nodes:
+            conditions = [
+                Condition().with_field(cond['field']).with_value(cond['value']).with_operation(cond['operation'])
+                for cond in node.get('conditions', [])
+            ]
+            nodes.append(Node().with_id(node['id']).with_conditions(conditions).with_output(node.get('output')))
+        return nodes
+
+    @classmethod
+    def __parse_joints(cls, raw_joints: dict) -> List[Joint]:
+        return [
+            Joint().with_id(joint['id']).with_nodes(joint['nodes']).with_output(joint['output'])
+            for joint in raw_joints
+        ]
+
+    @classmethod
+    def __parse_results(cls, raw_results: dict) -> List[Result]:
+        return [
+            Result().with_id(result['id']).with_object(result['object'])
+            for result in raw_results
+        ]
