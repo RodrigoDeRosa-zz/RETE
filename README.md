@@ -177,3 +177,12 @@ knowledge:
   "message": "No recommendation found for the given data"
 }
 ```
+
+## Running the server
+To run the server, you may need to install some things first. To do so, you can run 
+`make install-core-libraries`, which will install `python3.8` and `python3.8-venv`.
+Then, you will also need to set up the `venv`. You can do this by running `make 
+prepare`. Finally, to start the Flask server, run `make run`.
+
+Obviously, if you have `python3.8` and `flask` in your system, just do 
+`python3.8 app.py`.
