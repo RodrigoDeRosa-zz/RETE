@@ -26,7 +26,7 @@ def start():
     alpha = AlphaMemory(rules['nodes'], output)
     beta = BetaMemory(rules['joints'], alpha, output)
     # Create questions repository
-    repository = QuestionRepository(request_body['questions'])
+    repository = QuestionRepository(request_body.get('questions', {}))
     # Create session and store needed data
     sessions[(session_id := str(uuid.uuid4()).replace('-', ''))] = (alpha, beta, repository)
     return {'session_id': session_id}
@@ -42,7 +42,7 @@ def forward(session_id):
     alpha.update_knowledge(request.json)
     # Check for results
     if (result := alpha.evaluate()) or (result := beta.evaluate()):
-        return {'recommendation': result.result_object}
+        return {'inference_result': result.result_object}
     # Get names of fields to ask
     if not (fields_to_ask := alpha.needed_fields()):
         return {'message': 'No recommendation found for the given data'}, 400
