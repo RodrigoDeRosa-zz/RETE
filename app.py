@@ -44,7 +44,7 @@ def forward(session_id):
     if (result := alpha.evaluate()) or (result := beta.evaluate()):
         return {'inference_result': result.result_object}
     # Get names of fields to ask
-    if not (fields_to_ask := alpha.needed_fields()):
+    if not (alpha.should_continue() or beta.should_continue()) or not (fields_to_ask := alpha.needed_fields()):
         return {'message': 'No recommendation found for the given data'}, 400
     return {'needed_fields': repository.questions_for(fields_to_ask)}
 

@@ -34,6 +34,9 @@ class AlphaMemory:
         # Store the enabled nodes
         self.enabled_nodes = [node for node in self.nodes if node.enabled]
 
+    def should_continue(self) -> bool:
+        return next(filter(lambda node: node.output is not None, self.nodes), None) is not None
+
     def first_enabled_output(self) -> Optional[Result]:
         enabled_node_outputs = [node.output for node in self.enabled_nodes]
         return self.output.find_first(enabled_node_outputs)
@@ -49,5 +52,5 @@ class AlphaMemory:
     def removable_nodes(self):
         """ This method can be called only once, as it will clear the list. """
         output = self.__removable_nodes
-        self.__removable_nodes.clear()
+        self.__removable_nodes = []
         return output

@@ -19,9 +19,16 @@ class BetaMemory:
         self.evaluate_joints()
         return self.first_enabled_output()
 
+    def should_continue(self) -> bool:
+        return len(self.joints) > 0
+
     def evaluate_joints(self):
         # Remove all the joints that could never possibly be enabled based on the current knowledge
-        self.joints = [joint for joint in self.joints if set(joint.node_ids).intersection(self.alpha.removable_nodes())]
+        self.joints = [
+            joint
+            for joint in self.joints
+            if not set(joint.node_ids).intersection(self.alpha.removable_nodes())
+        ]
         # Get the ids of the currently enabled nodes
         enabled_nodes_ids = [node.id for node in self.alpha.enabled_nodes]
         # Check which joints can be enabled
