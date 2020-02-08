@@ -33,7 +33,20 @@ need to extend said Knowledge. For that, the algorithm returns a list of all the
 it currently doesn't know and at least one node needs to become enabled. The following
 diagram is an example of such situation:
 
-![](./img/diagram-example2.png)    
+![](./img/diagram-example2.png)
+
+#### Memory update after knowledge evaluation
+
+Both the Alpha and Beta memories erase the nodes that could never be turned on based
+on the current knowledge. 
+
+Say we had node A in Alpha Memory, which evaluated that the field `age` was bigger than 
+`10` and that the field `weight` was less than `50`. If we knew that `age=9`, then we 
+would be sure that node A will never be enabled; therefore, we could remove it from 
+the Alpha Memory. The same would apply to the Beta Memory. Say we had node B, which
+evaluated that both nodes A and K from the Alpha Memory were enabled; in the previous
+scenario, that Beta node would never be enabled; therefore we could remove it too from
+the Beta Memory.
 
 ## Using this implementation
 

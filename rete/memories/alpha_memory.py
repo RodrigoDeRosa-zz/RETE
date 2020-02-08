@@ -10,9 +10,11 @@ class AlphaMemory:
     def __init__(self, nodes: List[Node], output_memory: OutputMemory):
         self.nodes: List[Node] = nodes
         self.output: OutputMemory = output_memory
+        self.knowledge: Dict[str, object] = {}
         # Keep this in memory to avoid multiple unnecessary iterations of self.nodes
         self.enabled_nodes: List[Node] = []
-        self.knowledge: Dict[str, object] = {}
+        # List that keeps removed nodes only for a while, to allow Beta memory to eliminate unneeded nodes
+        self.__removable_nodes: List[Node] = []
 
     def update_knowledge(self, knowledge: dict):
         self.knowledge = {**self.knowledge, **knowledge}
@@ -25,8 +27,10 @@ class AlphaMemory:
         # Evaluate all nodes
         for node in self.nodes:
             node.evaluate(self.knowledge)
+        # Store the removable nodes momentarily for beta memory updating
+        self.__removable_nodes = [node.id for node in self.nodes if node.removable]
         # Keep only those that have sense to analyze again based on the current knowledge
-        self.nodes = [node for node in self.nodes if not node.removable]
+        self.nodes = list(set(self.nodes).difference(set(self.__removable_nodes)))
         # Store the enabled nodes
         self.enabled_nodes = [node for node in self.nodes if node.enabled]
 
@@ -41,3 +45,9 @@ class AlphaMemory:
         for node in self.nodes:
             fields_to_ask = fields_to_ask.union(set(node.relevant_fields()).difference(set(self.knowledge.keys())))
         return fields_to_ask
+
+    def removable_nodes(self):
+        """ This method can be called only once, as it will clear the list. """
+        output = self.__removable_nodes
+        self.__removable_nodes.clear()
+        return output
