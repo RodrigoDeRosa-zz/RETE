@@ -199,3 +199,7 @@ prepare`. Finally, to start the Flask server, run `make run`.
 
 Obviously, if you have `python3.8` and `flask` in your system, just do 
 `python3.8 app.py`.
+
+## Running the frontend server
+Assuming you have everything ready to run a React App, run `npm install` and
+`npm start` from the frontend directory to start the application.
