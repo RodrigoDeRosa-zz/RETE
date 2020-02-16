@@ -48,7 +48,8 @@
         "arrival": "Bariloche",
         "departure": "San Martin de los Andes",
         "stops": [
-          "Villa La Angostura"
+          "Villa La Angostura",
+          "Villa Traful"
         ]
       }
     }

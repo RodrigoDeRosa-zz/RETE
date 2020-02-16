@@ -1,6 +1,7 @@
 import uuid
 
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 
 from rete.interface_services.question_repository import QuestionRepository
 from rete.memories.alpha_memory import AlphaMemory
@@ -9,6 +10,7 @@ from rete.loaders.rule_loader import RuleLoader
 from rete.memories.output_memory import OutputMemory
 
 app = Flask(__name__)
+cors = CORS(app, resources={r'/*': {'origins': '*'}})
 
 
 @app.route('/')

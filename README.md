@@ -191,7 +191,7 @@ knowledge:
 }
 ```
 
-## Running the server
+## Running the backend server
 To run the server, you may need to install some things first. To do so, you can run 
 `make install-core-libraries`, which will install `python3.8` and `python3.8-venv`.
 Then, you will also need to set up the `venv`. You can do this by running `make 
