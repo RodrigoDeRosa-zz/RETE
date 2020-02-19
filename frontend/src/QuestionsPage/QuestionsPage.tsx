@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './QuestionsPage.css';
 import BackendConnector from "../BackendConnector/BackendConnector";
 import AnswerInput from "../AnswerInput/AnswerInput";
 import ResultDisplay from "../ResultDisplay/ResultDisplay";

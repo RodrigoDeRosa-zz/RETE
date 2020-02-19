@@ -1,0 +1,30 @@
+.answer-input-holder {
+    margin-top: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+}
+
+.question-title {
+    flex-basis: 100%;
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.question-input {
+    width: 250px;
+    height: 50px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.send-button {
+    background-color: #444444;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    width: 85px;
+}

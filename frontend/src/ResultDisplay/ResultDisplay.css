@@ -1,0 +1,20 @@
+.result-holder {
+    margin-top: 15%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+}
+
+.result-title {
+    flex-basis: 100%;
+    font-weight: bold;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.result-line {
+    flex-basis: 100%;
+    font-size: 24px;
+    margin-top: 8px;
+}

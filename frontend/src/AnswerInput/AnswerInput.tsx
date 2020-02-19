@@ -1,4 +1,5 @@
 import React, {ChangeEvent, Component} from "react";
+import './AnswerInput.css'
 import QuestionsPage from "../QuestionsPage/QuestionsPage";
 
 type AnswerInputProps = {
@@ -15,6 +16,7 @@ class AnswerInput extends Component<AnswerInputProps> {
 
     async clicked() {
         await this.props.parent.moveForward({[this.props.fieldName]: this.state.inputData});
+        this.setState({inputData: ""})
     }
 
     handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,10 +30,10 @@ class AnswerInput extends Component<AnswerInputProps> {
 
     render() {
         return (
-            <div>
-                <p>{this.props.question}</p>
-                <input onChange={this.handleChange}/>
-                <button onClick={async () => this.clicked()}>SEND</button>
+            <div className="answer-input-holder">
+                <label className="question-title">{this.props.question}</label>
+                <input className="question-input" onChange={this.handleChange} value={this.state.inputData}/>
+                <button className="send-button" onClick={async () => this.clicked()}>SEND</button>
             </div>
         )
     }

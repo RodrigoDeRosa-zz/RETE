@@ -1,0 +1,9 @@
+.message-holder {
+    margin-top: 20%;
+    text-align: center;
+}
+
+.no-recommendation-message {
+    font-size: 30px;
+    font-weight: bold;
+}

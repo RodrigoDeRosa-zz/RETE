@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './ResultDisplay.css'
 
 type ResultDisplayProps = {
     resultObject: object
@@ -17,10 +18,11 @@ class ResultDisplay extends Component<ResultDisplayProps> {
         const recommendation = this.props.resultObject as TravelRecommendation;
         // Draw the result
         return (
-            <div>
-                <p><b>Arrival:</b> {recommendation.arrival}</p>
-                <p><b>Departure:</b> {recommendation.departure}</p>
-                <p><b>Stops:</b> {recommendation.stops.map(value => value+", ")}</p>
+            <div className="result-holder">
+                <label className="result-title">RECOMMENDATION FOUND!</label>
+                <label className="result-line"><b>Arrival:</b> {recommendation.arrival}</label>
+                <label className="result-line"><b>Departure:</b> {recommendation.departure}</label>
+                <label className="result-line"><b>Stops:</b> {recommendation.stops.map(value => value+", ")}</label>
             </div>
         )
     }

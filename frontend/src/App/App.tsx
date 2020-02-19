@@ -32,7 +32,7 @@ class App extends Component<AppProps> {
         else html = <p>Failed to connect to backend server.</p>;
         // Render application
         return (
-            <div className="App">
+            <div>
                 {html}
             </div>
         );
