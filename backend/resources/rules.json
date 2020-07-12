@@ -1,56 +1,761 @@
 {
   "nodes": [
     {
-      "id": "Age",
+      "id": "Basic High Required Sustainability",
       "conditions": [
         {
-          "field": "age",
-          "value": 18,
+          "field": "sustainability",
+          "value": "high",
+          "operation": "eq"
+        }
+      ]
+    },
+    {
+      "id": "Composed High Required Sustainability",
+      "conditions": [
+        {
+          "field": "sustainability",
+          "value": "mid",
+          "operation": "eq"
+        },
+        {
+          "field": "last_crop",
+          "value": [
+            "soy",
+            "sunflower"
+          ],
+          "operation": "in"
+        }
+      ]
+    },
+    {
+      "id": "Basic Low Required Sustainability",
+      "conditions": [
+        {
+          "field": "sustainability",
+          "value": "low",
+          "operation": "eq"
+        }
+      ]
+    },
+    {
+      "id": "Composed Low Required Sustainability",
+      "conditions": [
+        {
+          "field": "sustainability",
+          "value": "mid",
+          "operation": "eq"
+        },
+        {
+          "field": "last_crop",
+          "value": [
+            "wheat",
+            "sorghum",
+            "corn"
+          ],
+          "operation": "in"
+        }
+      ]
+    },
+    {
+      "id": "Mid Required Sustainability",
+      "conditions": [
+        {
+          "field": "sustainability",
+          "value": "mid",
+          "operation": "eq"
+        },
+        {
+          "field": "last_crop",
+          "value": [
+            "oats",
+            "barley"
+          ],
+          "operation": "in"
+        }
+      ]
+    },
+    {
+      "id": "Low Required Resilience",
+      "conditions": [
+        {
+          "field": "rain_regime",
+          "value": "low",
+          "operation": "eq"
+        },
+        {
+          "field": "month",
+          "value": 9,
+          "operation": "lte"
+        }
+      ]
+    },
+    {
+      "id": "Mid Required Resilience A",
+      "conditions": [
+        {
+          "field": "rain_regime",
+          "value": "low",
+          "operation": "eq"
+        },
+        {
+          "field": "month",
+          "value": 9,
           "operation": "bt"
         }
       ]
     },
     {
-      "id": "Income",
+      "id": "Mid Required Resilience B",
       "conditions": [
         {
-          "field": "income",
-          "value": 10000,
+          "field": "rain_regime",
+          "value": "high",
+          "operation": "eq"
+        },
+        {
+          "field": "month",
+          "value": 9,
+          "operation": "lte"
+        }
+      ]
+    },
+    {
+      "id": "High Required Resilience",
+      "conditions": [
+        {
+          "field": "rain_regime",
+          "value": "high",
+          "operation": "eq"
+        },
+        {
+          "field": "month",
+          "value": 9,
           "operation": "bt"
         }
       ]
     },
     {
-      "id": "Number of destinations",
+      "id": "Low Investment",
       "conditions": [
         {
-          "field": "destinations",
-          "value": 3,
+          "field": "investment",
+          "value": "low",
+          "operation": "eq"
+        }
+      ]
+    },
+    {
+      "id": "Mid Investment",
+      "conditions": [
+        {
+          "field": "investment",
+          "value": "mid",
+          "operation": "eq"
+        }
+      ]
+    },
+    {
+      "id": "High Investment",
+      "conditions": [
+        {
+          "field": "investment",
+          "value": "high",
+          "operation": "eq"
+        }
+      ]
+    },
+    {
+      "id": "Early Year",
+      "conditions": [
+        {
+          "field": "month",
+          "value": 4,
+          "operation": "lte"
+        }
+      ]
+    },
+    {
+      "id": "Mid-Late Year",
+      "conditions": [
+        {
+          "field": "month",
+          "value": 4,
           "operation": "bt"
+        }
+      ]
+    },
+    {
+      "id": "Cattle Raising",
+      "conditions": [
+        {
+          "field": "exploitation",
+          "value": "cattle",
+          "operation": "eq"
+        }
+      ]
+    },
+    {
+      "id": "Agriculture",
+      "conditions": [
+        {
+          "field": "exploitation",
+          "value": "agriculture",
+          "operation": "eq"
+        }
+      ]
+    },
+    {
+      "id": "Mixed Exploitation",
+      "conditions": [
+        {
+          "field": "exploitation",
+          "value": "mixed",
+          "operation": "eq"
         }
       ]
     }
   ],
   "joints": [
     {
-      "id": "Income and Destinations",
+      "id": "Cheap Oats 1",
       "nodes": [
-        "Income",
-        "Number of destinations"
+        "Early Year",
+        "Low Investment",
+        "Low Required Resilience"
       ],
-      "output": "Patagonia"
+      "output": "Oats"
+    },
+    {
+      "id": "Cheap Oats 2",
+      "nodes": [
+        "Early Year",
+        "Low Investment",
+        "Mid Required Resilience A"
+      ],
+      "output": "Oats"
+    },
+    {
+      "id": "Cheap Oats 3",
+      "nodes": [
+        "Early Year",
+        "Low Investment",
+        "Mid Required Resilience B"
+      ],
+      "output": "Oats"
+    },
+    {
+      "id": "Cheap Barley",
+      "nodes": [
+        "Early Year",
+        "Low Investment",
+        "High Required Resilience"
+      ],
+      "output": "Barley"
+    },
+    {
+      "id": "Cheap Sorghum",
+      "nodes": [
+        "Mid-Late Year",
+        "Low Investment"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Mid-High Investment Wheat 1",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Mid Required Sustainability",
+        "Agriculture"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 2",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Mid Required Sustainability",
+        "Agriculture"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 3",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Basic High Required Sustainability",
+        "Agriculture"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 4",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Composed High Required Sustainability",
+        "Agriculture"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 5",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Basic High Required Sustainability",
+        "Agriculture"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 6",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Composed High Required Sustainability",
+        "Agriculture"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 7",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Mid Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 8",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Mid Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 9",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Basic High Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 10",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Composed High Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 11",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Basic High Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Wheat 12",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Composed High Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Wheat"
+    },
+    {
+      "id": "Mid-High Investment Oats 1",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Cattle Raising"
+      ],
+      "output": "Oats"
+    },
+    {
+      "id": "Mid-High Investment Oats 2",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Cattle Raising"
+      ],
+      "output": "Oats"
+    },
+    {
+      "id": "Mid-High Investment Barley 1",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Basic Low Required Sustainability",
+        "Cattle Raising"
+      ],
+      "output": "Barley"
+    },
+    {
+      "id": "Mid-High Investment Barley 2",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Basic Low Required Sustainability",
+        "Cattle Raising"
+      ],
+      "output": "Barley"
+    },
+    {
+      "id": "Mid-High Investment Barley 3",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Composed Low Required Sustainability",
+        "Cattle Raising"
+      ],
+      "output": "Barley"
+    },
+    {
+      "id": "Mid-High Investment Barley 4",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Basic Low Required Sustainability",
+        "Cattle Raising"
+      ],
+      "output": "Barley"
+    },
+    {
+      "id": "Mid-High Investment Barley 5",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Basic Low Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Barley"
+    },
+    {
+      "id": "Mid-High Investment Barley 6",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Basic Low Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Barley"
+    },
+    {
+      "id": "Mid-High Investment Barley 7",
+      "nodes": [
+        "Early Year",
+        "Mid Investment",
+        "Composed Low Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Barley"
+    },
+    {
+      "id": "Mid-High Investment Barley 8",
+      "nodes": [
+        "Early Year",
+        "High Investment",
+        "Basic Low Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Barley"
+    },
+    {
+      "id": "Summer Sorghum 1",
+      "nodes": [
+        "Mid-Late Year",
+        "Mid Investment",
+        "Cattle Raising"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Summer Sorghum 2",
+      "nodes": [
+        "Mid-Late Year",
+        "Mid Investment",
+        "Low Required Resilience",
+        "Basic High Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Summer Sorghum 3",
+      "nodes": [
+        "Mid-Late Year",
+        "Mid Investment",
+        "Low Required Resilience",
+        "Composed High Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Summer Sunflower 1",
+      "nodes": [
+        "Mid-Late Year",
+        "Mid Investment",
+        "Agriculture"
+      ],
+      "output": "Sunflower"
+    },
+    {
+      "id": "Summer Sunflower 2",
+      "nodes": [
+        "Mid-Late Year",
+        "Mid Investment",
+        "Mid Required Resilience A"
+      ],
+      "output": "Sunflower"
+    },
+    {
+      "id": "Summer Sunflower 3",
+      "nodes": [
+        "Mid-Late Year",
+        "Mid Investment",
+        "Mid Required Resilience B"
+      ],
+      "output": "Sunflower"
+    },
+    {
+      "id": "Summer Sunflower 4",
+      "nodes": [
+        "Mid-Late Year",
+        "Mid Investment",
+        "Mid Required Sustainability"
+      ],
+      "output": "Sunflower"
+    },
+    {
+      "id": "Summer Sunflower 5",
+      "nodes": [
+        "Mid-Late Year",
+        "Mid Investment",
+        "Basic Low Required Sustainability"
+      ],
+      "output": "Sunflower"
+    },
+    {
+      "id": "Summer Sunflower 6",
+      "nodes": [
+        "Mid-Late Year",
+        "Mid Investment",
+        "Composed Low Required Sustainability"
+      ],
+      "output": "Sunflower"
+    },
+    {
+      "id": "Expensive Soy 1",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Basic Low Required Sustainability",
+        "Cattle Raising"
+      ],
+      "output": "Soy"
+    },
+    {
+      "id": "Expensive Soy 2",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Composed Low Required Sustainability",
+        "Cattle Raising"
+      ],
+      "output": "Soy"
+    },
+    {
+      "id": "Expensive Soy 3",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Basic Low Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Soy"
+    },
+    {
+      "id": "Expensive Soy 4",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Composed Low Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Soy"
+    },
+    {
+      "id": "Expensive Corn 1",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Basic High Required Sustainability",
+        "Low Required Resilience"
+      ],
+      "output": "Corn"
+    },
+    {
+      "id": "Expensive Corn 2",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Composed High Required Sustainability",
+        "Low Required Resilience"
+      ],
+      "output": "Corn"
+    },
+    {
+      "id": "Expensive Corn 3",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Low Required Resilience",
+        "Cattle Raising"
+      ],
+      "output": "Corn"
+    },
+    {
+      "id": "Expensive Sorghum 1",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Mid Required Resilience A",
+        "Cattle Raising"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Expensive Sorghum 2",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Mid Required Resilience B",
+        "Cattle Raising"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Expensive Sorghum 3",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Basic High Required Sustainability",
+        "Mid Required Resilience A"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Expensive Sorghum 4",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Composed High Required Sustainability",
+        "Mid Required Resilience A"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Expensive Sorghum 5",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Basic High Required Sustainability",
+        "Mid Required Resilience B"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Expensive Sorghum 6",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Composed High Required Sustainability",
+        "Mid Required Resilience B"
+      ],
+      "output": "Sorghum"
+    },
+    {
+      "id": "Expensive Sunflower 1",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Mid Required Sustainability",
+        "Cattle Raising"
+      ],
+      "output": "Sunflower"
+    },
+    {
+      "id": "Expensive Sunflower 2",
+      "nodes": [
+        "Mid-Late Year",
+        "High Investment",
+        "Mid Required Sustainability",
+        "Mixed Exploitation"
+      ],
+      "output": "Sunflower"
     }
   ],
   "outputs": [
     {
-      "id": "Patagonia",
+      "id": "Oats",
       "object": {
-        "arrival": "Bariloche",
-        "departure": "San Martin de los Andes",
-        "stops": [
-          "Villa La Angostura",
-          "Villa Traful"
-        ]
+        "most_suitable_crop": "oats"
+      }
+    },
+    {
+      "id": "Barley",
+      "object": {
+        "most_suitable_crop": "barley"
+      }
+    },
+    {
+      "id": "Sorghum",
+      "object": {
+        "most_suitable_crop": "sorghum"
+      }
+    },
+    {
+      "id": "Soy",
+      "object": {
+        "most_suitable_crop": "soy"
+      }
+    },
+    {
+      "id": "Sunflower",
+      "object": {
+        "most_suitable_crop": "sunflower"
+      }
+    },
+    {
+      "id": "Wheat",
+      "object": {
+        "most_suitable_crop": "wheat"
+      }
+    },
+    {
+      "id": "Corn",
+      "object": {
+        "most_suitable_crop": "corn"
       }
     }
   ]

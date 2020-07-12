@@ -1,5 +1,8 @@
 {
-  "age": "What is the traveler's age?",
-  "destinations": "Which is the approximate number of destinations you'd like to visit?",
-  "income": "What is your approximate income?"
+  "sustainability": "What is the wished sustainability? [low, mid, high]",
+  "last_crop": "Which was the last used crop in the field? [soy, sunflower, oats, wheat, sorghum, corn, barley]",
+  "rain_regime": "What is the rain regime like? [low, mid, high]",
+  "month": "In which month will the crop be sown?",
+  "investment": "Which is the level of available capital to invest? [low, mid, high]",
+  "exploitation": "Which type of exploitation is planned? [cattle, agriculture, mixed]"
 }

@@ -1,6 +1,7 @@
 from rete.model.operations.bigger_than import BiggerThan
 from rete.model.operations.bigger_than_equals import BiggerThanEquals
 from rete.model.operations.equals import Equals
+from rete.model.operations.includes import Includes
 from rete.model.operations.less_than import LessThan
 from rete.model.operations.less_than_equals import LessThanEquals
 from rete.model.operations.operation import Operation
@@ -22,16 +23,18 @@ class Condition:
         return self
 
     def with_operation(self, operation: str):
-        if operation == "eq":
+        if operation == 'eq':
             self.operation = Equals()
-        elif operation == "bt":
+        elif operation == 'bt':
             self.operation = BiggerThan()
-        elif operation == "lt":
+        elif operation == 'lt':
             self.operation = LessThan()
-        elif operation == "bte":
+        elif operation == 'bte':
             self.operation = BiggerThanEquals()
-        elif operation == "lte":
+        elif operation == 'lte':
             self.operation = LessThanEquals()
+        elif operation == 'in':
+            self.operation = Includes()
         return self
 
     def apply_to(self, knowledge: dict):
