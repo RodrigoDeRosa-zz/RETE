@@ -4,6 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS, cross_origin
 
 from rete.interface_services.question_repository import QuestionRepository
+from rete.interface_services.translator import Translator
 from rete.memories.alpha_memory import AlphaMemory
 from rete.memories.beta_memory import BetaMemory
 from rete.loaders.rule_loader import RuleLoader
@@ -41,9 +42,11 @@ def forward(session_id):
     # Retrieve memories for session
     alpha, beta, repository = sessions[session_id]
     # Update knowledge with received data
-    alpha.update_knowledge(request.json)
+    knowledge = Translator.translate_knowledge(request.json)
+    alpha.update_knowledge(knowledge)
     # Check for results
     if (result := alpha.evaluate()) or (result := beta.evaluate()):
+        result.result_object['most_suitable_crop'] = Translator.translate_result(result.result_object['most_suitable_crop'])
         return {'inference_result': result.result_object}
     # Get names of fields to ask
     if not (alpha.should_continue() or beta.should_continue()) or not (fields_to_ask := alpha.needed_fields()):

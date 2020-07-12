@@ -1,8 +1,8 @@
 {
-  "sustainability": "What is the wished sustainability? [low, mid, high]",
-  "last_crop": "Which was the last used crop in the field? [soy, sunflower, oats, wheat, sorghum, corn, barley]",
-  "rain_regime": "What is the rain regime like? [low, mid, high]",
-  "month": "In which month will the crop be sown?",
-  "investment": "Which is the level of available capital to invest? [low, mid, high]",
-  "exploitation": "Which type of exploitation is planned? [cattle, agriculture, mixed]"
+  "sustainability": "¿Cuál es la sustentabilidad deseada? [baja, media, alta]",
+  "last_crop": "¿Qué fue lo último que se cultivo en el lote? [soja, girasol, avena, trigo, sorgo, maíz, cebada]",
+  "rain_regime": "¿Cómo es el régimen de lluvias? [bajo, medio, alto]",
+  "month": "¿En qué mes se realizará el cultivo?",
+  "investment": "¿Cuál es el nivel de capital disponible para invertir? [bajo, medio, alto]",
+  "exploitation": "¿Qué tipo de explotación se desea realizar? [agricultura, ganadería, mixta]"
 }
