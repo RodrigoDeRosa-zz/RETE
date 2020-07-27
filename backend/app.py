@@ -45,9 +45,12 @@ def forward(session_id):
     knowledge = Translator.translate_knowledge(request.json)
     alpha.update_knowledge(knowledge)
     # Check for results
-    if (result := alpha.evaluate()) or (result := beta.evaluate()):
-        result.result_object['most_suitable_crop'] = Translator.translate_result(result.result_object['most_suitable_crop'])
-        return {'inference_result': result.result_object}
+    if (result_list := alpha.evaluate()) or (result_list := beta.evaluate()):
+        inference_result = []
+        for result in result_list:
+            result.result_object['most_suitable_crop'] = Translator.translate_result(result.result_object['most_suitable_crop'])
+            inference_result.append(result.result_object)
+        return {'inference_result': inference_result}
     # Get names of fields to ask
     if not (alpha.should_continue() or beta.should_continue()) or not (fields_to_ask := alpha.needed_fields()):
         return {'message': 'No recommendation found for the given data'}, 400

@@ -6,7 +6,7 @@ type ResultDisplayProps = {
 }
 
 type CropRecommendation = {
-    most_suitable_crop: string,
+    suitable_crops: Array<string>,
 }
 
 class ResultDisplay extends Component<ResultDisplayProps> {
@@ -18,7 +18,11 @@ class ResultDisplay extends Component<ResultDisplayProps> {
         return (
             <div className="result-holder">
                 <label className="result-title">Encontramos una sugerencia en base a lo ingresado!</label>
-                <label className="result-line"><b>Cultivo más apropiado:</b> {recommendation.most_suitable_crop}</label>
+                {
+                    recommendation.suitable_crops.map((crop, index) => {
+                        return <label className="result-line"><b>Cultivo más apropiado:</b>{crop}</label>
+                    } )
+                }
             </div>
         )
     }

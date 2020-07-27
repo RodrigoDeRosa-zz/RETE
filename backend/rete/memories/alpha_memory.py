@@ -19,9 +19,9 @@ class AlphaMemory:
     def update_knowledge(self, knowledge: dict):
         self.knowledge = {**self.knowledge, **knowledge}
 
-    def evaluate(self) -> Optional[Result]:
+    def evaluate(self) -> List[Result]:
         self.evaluate_nodes()
-        return self.first_enabled_output()
+        return self.enabled_outputs()
 
     def evaluate_nodes(self):
         # Evaluate all nodes
@@ -37,9 +37,9 @@ class AlphaMemory:
     def should_continue(self) -> bool:
         return next(filter(lambda node: node.output is not None, self.nodes), None) is not None
 
-    def first_enabled_output(self) -> Optional[Result]:
+    def enabled_outputs(self) -> Optional[List[Result]]:
         enabled_node_outputs = [node.output for node in self.enabled_nodes]
-        return self.output.find_first(enabled_node_outputs)
+        return self.output.get_all(enabled_node_outputs)
 
     def needed_fields(self) -> set:
         # The needed fields to progress in our solution search are those that our remaining nodes need to evaluate

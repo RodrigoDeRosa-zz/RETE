@@ -12,3 +12,10 @@ class OutputMemory:
         for output in self.outputs:
             if output.id in enabled_outputs:
                 return output
+
+    def get_all(self, enabled_outputs) -> Optional[List[Result]]:
+        outputs = []
+        for output in self.outputs:
+            if output.id in enabled_outputs:
+                outputs.append(output)
+        return outputs
