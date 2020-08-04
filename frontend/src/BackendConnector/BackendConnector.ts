@@ -24,8 +24,19 @@ class BackendConnector {
             });
     }
 
-    async forward(sessionId: string, knowledge: object): Promise<AxiosResponse|null> {
+    async forward(sessionId: string, knowledge: object): Promise<AxiosResponse> {
         return await axios.post('http://localhost:5001/forward/' + sessionId, knowledge)
+            .then(response => {
+                return response;
+            })
+            .catch(error => {
+                console.log(error);
+                return error.response;
+            });
+    }
+
+    async restart(sessionId: string): Promise<AxiosResponse|null> {
+        return await axios.post('http://localhost:5001/restart/' + sessionId)
             .then(response => {
                 return response;
             })

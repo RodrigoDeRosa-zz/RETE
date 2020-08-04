@@ -1,0 +1,40 @@
+.knowledge-holder {
+    box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.24);
+    display: flex;
+    background-color: #a9fedb;
+    margin: 50px 20px 0 20px;
+    padding: 15px;
+    border-radius: 20px;
+    width: 500px;
+    flex-wrap: wrap;
+}
+
+.knowledge-status-title {
+    flex-basis: 100%;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.knowledge-status-holder {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    width: fit-content;
+}
+
+.knowledge-entry-holder {
+    margin: 10px;
+    flex-basis: 100%;
+    width: fit-content;
+}
+
+.knowledge-entry-key {
+    font-weight: bold;
+    margin-right: 3px;
+}
+
+.knowledge-entry-value {
+    font-style: italic;
+}

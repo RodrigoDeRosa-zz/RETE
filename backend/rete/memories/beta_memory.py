@@ -37,10 +37,9 @@ class BetaMemory:
         # Store the enabled joints
         self.enabled_joints = [joint for joint in self.joints if joint.enabled]
 
-    def first_enabled_output(self) -> Optional[Result]:
-        enabled_joint_outputs = [joint.output for joint in self.enabled_joints]
-        return self.output.find_first(enabled_joint_outputs)
-
     def enabled_outputs(self) -> Optional[List[Result]]:
         enabled_joint_outputs = [joint.output for joint in self.enabled_joints]
         return self.output.get_all(enabled_joint_outputs)
+
+    def possible_outputs(self):
+        return set([joint.output for joint in self.joints])

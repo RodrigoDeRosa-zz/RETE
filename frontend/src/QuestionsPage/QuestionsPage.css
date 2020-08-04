@@ -1,0 +1,46 @@
+.status-content-holder {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.restart-button {
+    background-color: #444444;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+  
+.restart-button:after {
+    content: "";
+    background: #440e0e;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.4s
+}
+  
+.restart-button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.restart-button:focus {
+    outline-width: 0;
+}

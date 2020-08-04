@@ -24,3 +24,10 @@ class Joint:
     def evaluate(self, enabled_nodes: List[str]):
         if set(self.node_ids) <= set(enabled_nodes):
             self.enabled = True
+
+    def __str__(self) -> str:
+        items = ("%s = %r" % (k, v) for k, v in self.__dict__.items())
+        return "<%s: {%s}>" % (self.__class__.__name__, ', '.join(items))
+
+    def __repr__(self) -> str:
+        return str(self)

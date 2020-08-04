@@ -17,6 +17,7 @@ class AlphaMemory:
         self.__removable_nodes: List[Node] = []
 
     def update_knowledge(self, knowledge: dict):
+        # Update knowledge
         self.knowledge = {**self.knowledge, **knowledge}
 
     def evaluate(self) -> List[Result]:
@@ -28,7 +29,7 @@ class AlphaMemory:
         for node in self.nodes:
             node.evaluate(self.knowledge)
         # Store the removable nodes momentarily for beta memory updating
-        self.__removable_nodes = [node.id for node in self.nodes if node.removable]
+        self.__removable_nodes = [node for node in self.nodes if node.removable]
         # Keep only those that have sense to analyze again based on the current knowledge
         self.nodes = list(set(self.nodes).difference(set(self.__removable_nodes)))
         # Store the enabled nodes

@@ -1,9 +1,15 @@
 .message-holder {
-    margin-top: 20%;
+    margin-top: 50px;
     text-align: center;
 }
 
 .no-recommendation-message {
     font-size: 30px;
     font-weight: bold;
+}
+
+.no-recommendation-data-holder {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
 }

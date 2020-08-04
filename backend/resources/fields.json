@@ -1,0 +1,20 @@
+{
+  "month": [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+  ],
+  "sustainability": [
+    "low", "mid", "high"
+  ],
+  "rain_regime": [
+    "low", "mid", "high"
+  ],
+  "investment": [
+    "low", "mid", "high"
+  ],
+  "last_crop": [
+    "soy", "oats", "sorghum", "wheat", "corn", "barley", "sunflower"
+  ],
+  "exploitation": [
+    "agriculture", "cattle", "mixed"
+  ]
+}

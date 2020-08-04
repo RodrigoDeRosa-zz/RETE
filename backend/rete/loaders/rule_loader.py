@@ -18,6 +18,13 @@ class RuleLoader:
         return cls.parse_rules(raw_rules)
 
     @classmethod
+    def load_fields_from_file(cls, path: str) -> dict:
+        file_path = f'{abspath(join(dirname(__file__), "../../"))}{path}'
+        with open(file_path, 'r') as fd:
+            fields_values = json.load(fd)
+        return fields_values
+
+    @classmethod
     def parse_rules(cls, rules_dict: dict) -> dict:
         return {
             'nodes': cls.__parse_nodes(rules_dict.get('nodes', [])),
